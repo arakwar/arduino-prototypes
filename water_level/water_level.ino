@@ -17,6 +17,8 @@ void setup() {
   pinMode(blue_pin, OUTPUT);
   sensor_diff = sensor_max - sensor_min;
   Serial.begin(9600);
+  pinMode(4,INPUT);
+  digitalWrite(12,HIGH);
 }
 
 void loop() {
@@ -30,7 +32,14 @@ void loop() {
   if (red > 255) red = 255;
   green = level * 64 / 100;
   setColor(red,green,0);
-  delay(10);
+
+//joystick
+  Serial.print(analogRead(A2));
+  Serial.print(" ");
+  Serial.print(analogRead(A3));
+  Serial.print(" ");
+  Serial.println(digitalRead(12));
+  delay(100);
 }
 
 
